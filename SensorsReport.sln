@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SensorsReport", "SensorsReport\SensorsReport.csproj", "{D13530BD-EC52-4BEA-B1DB-C3E87DECF436}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorReport.Client", "SensorReport.Client\SensorReport.Client.csproj", "{0EA909CF-DFC7-4A66-9BCD-E90153032AA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D13530BD-EC52-4BEA-B1DB-C3E87DECF436}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D13530BD-EC52-4BEA-B1DB-C3E87DECF436}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D13530BD-EC52-4BEA-B1DB-C3E87DECF436}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA909CF-DFC7-4A66-9BCD-E90153032AA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA909CF-DFC7-4A66-9BCD-E90153032AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA909CF-DFC7-4A66-9BCD-E90153032AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA909CF-DFC7-4A66-9BCD-E90153032AA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

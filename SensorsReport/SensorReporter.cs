@@ -11,29 +11,31 @@ namespace SensorsReport
 {
     public class SensorReporter
     {
-        private CancellationTokenSource cts = new CancellationTokenSource(300);
-        private readonly SensorDataFetcher[] _sensorDataFetchers = new[] {
-            new SensorDataFetcher { URL = "http://www.mocky.io/v2/5b23bd852f00003d1ce096df", SensorDataBuilder = new XmlSensorListBuilder() },
-            new SensorDataFetcher { URL = "http://www.mocky.io/v2/5b23bcf72f00003215e096dd", SensorDataBuilder = new SimpleJsonSensorListBuider() },
-            new SensorDataFetcher { URL = "http://www.mocky.io/v2/5b23be902f00000e00e096e2", SensorDataBuilder = new JsonObjectsSensorListBuilder() }
-        };
+        private CancellationTokenSource cts = new CancellationTokenSource(3000);
+        private readonly SensorDataFetcher[] _sensorDataFetchers;
 
-        public async Task<List<Sensor>> GetSensorList(CancellationToken ct)
+        public SensorReporter(SensorDataFetcher[] sensorDataFetchers)
+        {
+            _sensorDataFetchers = sensorDataFetchers;
+        }
+        internal protected async Task<List<Sensor>> GetSensorList(CancellationToken ct)
         {
             var sensorDataList = new List<Sensor>();
             using (HttpClient client = new HttpClient())
             {
-                foreach (var item in _sensorDataFetchers)
+                var tasks = _sensorDataFetchers.Select(async item =>
                 {
                     var response = await client.GetAsync(item.URL, ct);
                     var list = await item.SensorDataBuilder.BuildSensorsAsync(response);
                     if (list.Any()) sensorDataList.AddRange(list);
-                }
+
+                });
+                await Task.WhenAll(tasks);
                 return sensorDataList;
             }
         }
 
-        public async Task<string> GetSensorsReport()
+        public async Task<string> Report()
         {
             var sensorList = new List<Sensor>();
             try
